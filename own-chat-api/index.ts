@@ -6,7 +6,6 @@ import fileDb from './fileDb';
 const app = express();
 const port = 8000;
 
-
 const whitelist = ['http://localhost:5173']
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {

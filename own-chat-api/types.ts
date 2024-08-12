@@ -1,6 +1,6 @@
 export interface Message {
     id: string;
-    title: string;
+    message: string;
     author: string;
     datetime: string;
 }
