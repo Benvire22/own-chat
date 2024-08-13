@@ -12,14 +12,14 @@ interface Props {
 
 const MessageItem: React.FC<Props> = ({author, message, datetime}) => {
   return (
-  <Grid item >
+  <Grid item>
     <Card variant="outlined">
       <CardContent>
-        <Typography borderBottom="1px solid rgba(0, 0, 0, 0.12)" marginBottom="10px">
+        <Typography borderBottom="1px solid #ccc" marginBottom="10px" paddingBottom="7px">
           <Typography variant="h6" color={lightBlue[900]} marginRight="10px" component="span">{author}.</Typography>
           <Typography variant="h6" color="teal" component="span">{dayjs(datetime).format('DD.MM.YYYY HH:mm')}</Typography>
         </Typography>
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="body1">
           {message}
         </Typography>
       </CardContent>

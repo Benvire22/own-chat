@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Container } from '@mui/material';
 import { Message, UserMessage } from '../../types';
 import MessagesList from './components/MessagesList/MessagesList';
 import SendForm from './components/SendForm/SendForm';
 import axiosApi from '../../axiosApi';
-import { Container } from '@mui/material';
 
 const OwnChat = () => {
   const [messagesData, setMessagesData] = useState<Message[]>([]);
@@ -62,13 +62,13 @@ const OwnChat = () => {
 
   const setMessage = async (message: UserMessage) => {
     setCurrentInterval(prevState => !prevState);
-    await axiosApi.post('messages', message);
+    await axiosApi.post('/messages', message);
   };
 
   return (
     <Container maxWidth="xl" component="main">
       <MessagesList messages={messagesData} isError={error}/>
-      {/*<SendForm onSubmit={setMessage}/>*/}
+      <SendForm onSubmit={setMessage}/>
     </Container>
   );
 };

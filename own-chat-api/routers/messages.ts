@@ -10,7 +10,8 @@ messagesRouter.get('/', async (req, res) => {
 
   if (queryDate === '') {
     const messages = await fileDb.getItems();
-    return res.send(JSON.stringify(messages));
+
+    return res.send(messages);
   } else if (!isNaN(date.getDate())) {
     const messages = await fileDb.getItems();
 
@@ -22,7 +23,7 @@ messagesRouter.get('/', async (req, res) => {
       }
     });
 
-    return res.send(JSON.stringify(newMessages));
+    return res.send(newMessages);
   }
 
   if (isNaN(date.getDate())) {

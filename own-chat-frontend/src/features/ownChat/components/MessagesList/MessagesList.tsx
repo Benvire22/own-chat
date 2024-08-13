@@ -9,34 +9,34 @@ interface Props {
 }
 
 const MessagesList: React.FC<Props> = ({messages, isError}) => {
-  const messagesEndRef = useRef<null | HTMLDivElement>(null)
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({behavior: 'smooth'})
+      messagesEndRef.current.scrollIntoView({behavior: 'smooth'});
     }
   };
 
   useEffect(() => {
-    scrollToBottom()
+    scrollToBottom();
   }, [messages]);
 
   return (
     <Grid
       container
       sx={{
-        height: '600px',
+        height: '500px',
         mt: 2,
         overflowY: 'scroll',
         border: '1px solid #ccc',
         p: 1,
-    }}
+      }}
       spacing={1}
     >
       {isError
         ? (
-          <Grid item>
-            <Typography variant="h3" component="h1" sx={{flexGrow: 1, mb: 3, color: 'red'}}>
+          <Grid item flexGrow={1}>
+            <Typography variant="h3" sx={{m: '150px 0 0 260px', color: 'red'}}>
               Sorry, "unexpected Error" was occurred!
             </Typography>
           </Grid>)
