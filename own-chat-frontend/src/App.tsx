@@ -1,11 +1,7 @@
-import ReactChat from './containers/ReactChat/ReactChat';
+import OwnChat from './features/ownChat/OwnChat';
 
 const App = () => {
-  return (
-    <>
-      <ReactChat />
-    </>
-  );
+  return <OwnChat />;
 };
 
 export default App;

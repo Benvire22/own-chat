@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 import fileDb from '../fileDb';
 import { MessageFromUser } from '../types';
 
@@ -8,19 +8,29 @@ messagesRouter.get('/', async (req, res) => {
   const queryDate = req.query.datetime as string;
   const date = new Date(queryDate);
 
-  if (isNaN(date.getDate())) {
+  if (queryDate === '') {
     const messages = await fileDb.getItems();
-    res.send(JSON.stringify(messages));
-  } else {
+    return res.send(JSON.stringify(messages));
+  } else if (!isNaN(date.getDate())) {
     const messages = await fileDb.getItems();
+
     const newMessages = messages.filter((message) => {
       const messageDate = new Date(message.datetime);
+
       if (messageDate > date) {
         return message;
       }
     });
 
-    res.send(JSON.stringify(newMessages));
+    return res.send(JSON.stringify(newMessages));
+  }
+
+  if (isNaN(date.getDate())) {
+    const error = {
+      error: 'datetime value specified in the request is invalid!',
+    };
+
+    return res.status(400).send(error);
   }
 });
 
@@ -35,10 +45,10 @@ messagesRouter.post('/', async (req, res) => {
     return res.send(saveMessage);
   } else {
     const error = {
-      error: 'Author and message must be present in the request'
+      error: 'Author and message must be present in the request!'
     };
 
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 
